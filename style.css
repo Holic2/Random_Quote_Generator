@@ -1,0 +1,268 @@
+/* ===== CSS Variables ===== */
+:root {
+  --bg:        #0e0c0a;
+  --surface:   #181410;
+  --border:    #2e2820;
+  --gold:      #c9a84c;
+  --gold-soft: #e8c97a;
+  --cream:     #f0e6d0;
+  --muted:     #7a6a55;
+  --accent:    #d4715a;
+  --radius:    4px;
+  --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Base ===== */
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===== Noise Texture Overlay ===== */
+.noise {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* ===== Layout ===== */
+.container {
+  position: relative;
+  z-index: 1;
+  width: min(640px, 92vw);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+/* ===== Header ===== */
+.header {
+  text-align: center;
+}
+
+.header-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+/* ===== Quote Card ===== */
+.quote-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3rem 3rem 2.25rem;
+  position: relative;
+  overflow: hidden;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+/* subtle left accent bar */
+.quote-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold), var(--accent));
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+/* corner decoration */
+.quote-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 100px; height: 100px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+/* fade animation class */
+.quote-card.fade-out {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.quote-number {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.6rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+}
+
+.quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  line-height: 0.5;
+  color: var(--gold);
+  opacity: 0.25;
+  margin-bottom: 0.75rem;
+  display: block;
+  user-select: none;
+}
+
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  line-height: 1.75;
+  color: var(--cream);
+  font-style: italic;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.75rem;
+}
+
+.quote-divider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 80%);
+  margin-bottom: 1.25rem;
+  opacity: 0.35;
+}
+
+.quote-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quote-author {
+  font-size: 0.8rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.05em;
+  font-style: normal;
+}
+
+.quote-category {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  background: var(--border);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+/* ===== Actions ===== */
+.actions {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition), transform 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* New Quote — filled gold */
+.btn-new {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+  font-weight: 500;
+}
+.btn-new:hover {
+  background: var(--gold-soft);
+  border-color: var(--gold-soft);
+}
+
+/* Copy — ghost */
+.btn-copy {
+  background: transparent;
+  color: var(--cream);
+  border-color: var(--border);
+}
+.btn-copy:hover {
+  border-color: var(--muted);
+  color: var(--gold-soft);
+}
+.btn-copy.copied {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Tweet — ghost accent */
+.btn-tweet {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--border);
+}
+.btn-tweet:hover {
+  border-color: var(--muted);
+  color: var(--cream);
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  .quote-card {
+    padding: 2rem 1.5rem 1.75rem;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn {
+    justify-content: center;
+  }
+}

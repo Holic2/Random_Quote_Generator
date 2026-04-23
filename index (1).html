@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Quote Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <main class="container">
+
+    <header class="header">
+      <span class="header-label">✦ Daily Wisdom</span>
+    </header>
+
+    <section class="quote-card" id="quoteCard">
+      <div class="quote-number" id="quoteNumber">01</div>
+      <div class="quote-mark">&ldquo;</div>
+      <p class="quote-text" id="quoteText">
+        The only way to do great work is to love what you do.
+      </p>
+      <div class="quote-divider"></div>
+      <div class="quote-meta">
+        <span class="quote-author" id="quoteAuthor">— Steve Jobs</span>
+        <span class="quote-category" id="quoteCategory">Passion</span>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button class="btn btn-new" id="newQuoteBtn" onclick="generateQuote()">
+        <span class="btn-icon">↻</span>
+        <span>New Quote</span>
+      </button>
+      <button class="btn btn-copy" id="copyBtn" onclick="copyQuote()">
+        <span class="btn-icon">⎘</span>
+        <span>Copy</span>
+      </button>
+      <a class="btn btn-tweet" id="tweetBtn" target="_blank">
+        <span class="btn-icon">𝕏</span>
+        <span>Share</span>
+      </a>
+    </div>
+
+    <footer class="footer">
+      <span id="quoteCount">1 of 20 quotes</span>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
