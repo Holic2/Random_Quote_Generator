@@ -6,3 +6,4 @@ HTML
 CSS
 JavaScript
 API used :
+https://api.quotable.io
